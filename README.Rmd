@@ -22,3 +22,5 @@ Submit a link to your repository on Canvas (only one submission per team) to sig
 library(classdata)
 head(ames)
 ```
+
+2. The variable of special interest or focus is Sale Price.
