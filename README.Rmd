@@ -26,3 +26,11 @@ head(ames)
 2. The variable of special interest or focus is Sale Price.
 
 3. Range of the variable, histogram, and general pattern.
+
+```{r}
+library(ggplot2)
+ggplot(ames, aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth=2) +
+  ggtitle("binwidth = 2")
+
+```
