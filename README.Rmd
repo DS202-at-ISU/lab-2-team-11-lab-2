@@ -43,3 +43,18 @@ ggplot(ames, aes(x = log(get("Sale Price")))) +
 
 
 ```
+
+```{r}
+range(ames$Bedrooms, na.rm = TRUE)
+
+library(ggplot2)
+ggplot(ames, aes(x = Bedrooms, y = log(get("Sale Price")))) +
+  geom_point(color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Bedrooms vs Sale Price",
+       x = "Number of Bedrooms",
+       y = "Sale Price")
+
+```
+
+Luca: I chose the variable Bedrooms. Bedrooms and Sale Price do not show correlation. The majority of the homes have 2-5 bed rooms and there are some outliers. There is one outlier of 10 bedrooms, but the price is in the normal range.
