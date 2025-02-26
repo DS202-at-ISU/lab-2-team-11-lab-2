@@ -27,10 +27,19 @@ head(ames)
 
 3. Range of the variable, histogram, and general pattern.
 
+
+```{r}
+
+range(ames$`Sale Price`, na.rm = TRUE)
+
+```
+
+
 ```{r}
 library(ggplot2)
 ggplot(ames, aes(x = log(get("Sale Price")))) + 
   geom_histogram(binwidth=2) +
-  ggtitle("binwidth = 2")
+  ggtitle("Sale Price Histogram")
+
 
 ```
