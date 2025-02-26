@@ -24,3 +24,5 @@ head(ames)
 ```
 
 2. The variable of special interest or focus is Sale Price.
+
+3. Range of the variable, histogram, and general pattern.
