@@ -43,3 +43,18 @@ ggplot(ames, aes(x = log(get("Sale Price")))) +
 
 
 ```
+
+
+Devon's Work:
+```{r}
+library(dplyr)
+
+range(ames$YearBuilt, na.rm = TRUE)
+
+year <- filter(ames, YearBuilt != 0 & get("Sale Price")!=0)
+
+library(ggplot2)
+ggplot(year, aes(x = log(get("Sale Price")), y = YearBuilt)) + 
+  geom_point() +
+  ggtitle("Sale Price Histogram")
+```
