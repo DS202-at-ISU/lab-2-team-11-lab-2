@@ -48,7 +48,8 @@ Most of the sale prices are around the 11-13 range. There are no outliers, and n
 
 
 
-4.
+STEP 4 IZZY'S WORK:
+
 Izzy's Variable: Style
 Range:
 ```{r}
