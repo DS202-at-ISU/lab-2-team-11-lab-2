@@ -66,5 +66,5 @@ ggplot(ames, aes(Style, log(get("Sale Price")))) +
   geom_boxplot()
 
 ```
-
+I found that comparing the sale price to the style of the home shows us that the prices are very similar on average since the means are pretty lined up in the plot. I noticed the 1 story frame had a few outliers falling on the lower side of sale price, but it also had some outliers falling on the higher side. Even though they are all very close, the highest sale price mean is the 2 story brick style. The lowest mean is "none," which might mean these houses are unique or even smaller than any style on the list because smaller homes tend to have a lower sale price.
 
