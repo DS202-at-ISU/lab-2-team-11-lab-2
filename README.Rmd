@@ -30,8 +30,8 @@ head(ames)
 
 ```{r}
 
-range(ames$`Sale Price`, na.rm = TRUE)
-
+saleprice <- range(ames$`Sale Price`, na.rm = TRUE)
+saleprice
 ```
 
 
@@ -43,3 +43,28 @@ ggplot(ames, aes(x = log(get("Sale Price")))) +
 
 
 ```
+Most of the sale prices are around the 11-13 range. There are no outliers, and not many homes have a sale price above or below the 11-13 range.
+
+
+
+
+4.
+Izzy's Variable: Style
+Range:
+```{r}
+
+unique(ames$Style)
+#since it is categorical, these are the unique values for "Style"
+
+```
+Since the style is categorical, the range is a list of the types of styles of houses in Ames.
+
+```{r}
+library(ggplot2)
+ggplot(ames, aes(Style, log(get("Sale Price")))) +
+  scale_x_discrete(guide = guide_axis(n.dodge=3)) +
+  geom_boxplot()
+
+```
+
+
