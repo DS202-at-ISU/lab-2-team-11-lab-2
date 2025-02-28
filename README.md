@@ -50,3 +50,103 @@ head(ames)
     ## 4        No        (31) Res: Mitchell
     ## 5        No (19) Res: North Ridge Hei
     ## 6       Yes   (37) Res: College Creek
+
+The ames data set contains the following variables followed by what we
+expect the range of each to be:
+
+- parcel id
+- Address
+- Style
+- Occupancy
+- Sale Date (1900-2025)
+- Sale Price (0-2.5M)
+- Multi Sale
+- Year Built (1900-2025)
+- Acres (0-5)
+- Square Feet (0-10,000)
+- Bedrooms (0-5)
+- Finished Basement SF (0-700)
+- Lot Area SF (0-100,000)
+- AC (Yes/No)
+- Fireplace (Yes/No)
+- Neighborhood
+
+2.  The variable of special interest or focus is Sale Price.
+
+3.  Range of the variable, histogram, and general pattern.
+
+``` r
+range(ames$`Sale Price`, na.rm = TRUE)
+```
+
+    ## [1]        0 20500000
+
+``` r
+library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.4.2
+
+``` r
+ggplot(ames, aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth=2) +
+  ggtitle("Sale Price Histogram")
+```
+
+    ## Warning: Removed 2206 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+Devon’s Work:
+
+``` r
+range(ames$YearBuilt, na.rm = TRUE)
+```
+
+    ## [1]    0 2022
+
+``` r
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+library(ggplot2)
+year <- filter(ames, YearBuilt != 0 & get("Sale Price")!=0)
+ggplot(year, aes(x = YearBuilt)) + 
+  geom_histogram(binwidth = 1) +
+  ggtitle("Year Built Histogram")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+After removing an outlier with the value 0, the distribution of Year
+built seems to increase as the years become more current. There are
+various peaks and valleys.
+
+``` r
+library(dplyr)
+library(ggplot2)
+ggplot(year, aes(y = log(get("Sale Price")), x = YearBuilt)) + 
+  geom_point() +
+  ggtitle("Sale Price Histogram")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+There does not appear to be a relationship between YearBuilt and Sale
+Price. The sale prices of homes seems to be relatively constant across
+years that homes were built.However, this graph shows that some of the
+lowest sale prices were houses built around the time of the 2008 housing
+crisis.

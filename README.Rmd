@@ -23,6 +23,25 @@ library(classdata)
 head(ames)
 ```
 
+The ames data set contains the following variables followed by what we expect the range of each to be:
+
+* parcel id
+* Address
+* Style
+* Occupancy
+* Sale Date (1900-2025)
+* Sale Price (0-2.5M)
+* Multi Sale
+* Year Built (1900-2025)
+* Acres (0-5)
+* Square Feet (0-10,000)
+* Bedrooms (0-5)
+* Finished Basement SF (0-700)
+* Lot Area SF (0-100,000)
+* AC (Yes/No)
+* Fireplace (Yes/No)
+* Neighborhood
+
 2. The variable of special interest or focus is Sale Price.
 
 3. Range of the variable, histogram, and general pattern.
@@ -43,6 +62,32 @@ ggplot(ames, aes(x = log(get("Sale Price")))) +
 
 
 ```
+
+
+Devon's Work:
+```{r}
+range(ames$YearBuilt, na.rm = TRUE)
+```
+```{r}
+library(dplyr)
+library(ggplot2)
+year <- filter(ames, YearBuilt != 0 & get("Sale Price")!=0)
+ggplot(year, aes(x = YearBuilt)) + 
+  geom_histogram(binwidth = 1) +
+  ggtitle("Year Built Histogram")
+```
+
+After removing an outlier with the value 0, the distribution of Year built seems to increase as the years become more current. There are various peaks and valleys.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+ggplot(year, aes(y = log(get("Sale Price")), x = YearBuilt)) + 
+  geom_point() +
+  ggtitle("Sale Price Histogram")
+```
+
+There does not appear to be a relationship between YearBuilt and Sale Price. The sale prices of homes seems to be relatively constant across years that homes were built.However, this graph shows that some of the lowest sale prices were houses built around the time of the 2008 housing crisis.
 
 Most of the sale prices are around the 11-13 range. There are no outliers, and not many homes have a sale price above or below the 11-13 range.
 
