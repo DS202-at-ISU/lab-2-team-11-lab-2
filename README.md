@@ -17,6 +17,8 @@ grading once the due date is passed. Submit a link to your repository on
 Canvas (only one submission per team) to signal to the instructors that
 you are done with your submission.
 
+## Step 1 result (Devon):
+
 ``` r
 library(classdata)
 head(ames)
@@ -54,7 +56,7 @@ head(ames)
 The ames data set contains the following variables followed by what we
 expect the range of each to be:
 
-- parcel id
+- Parcel id
 - Address
 - Style
 - Occupancy
@@ -71,12 +73,17 @@ expect the range of each to be:
 - Fireplace (Yes/No)
 - Neighborhood
 
-2.  The variable of special interest or focus is Sale Price.
+## Step 2 Result (Luca):
 
-3.  Range of the variable, histogram, and general pattern.
+The variable of special interest or focus is Sale Price.
+
+## Step 3 Result (Izzy):
+
+Range of the variable, histogram, and general pattern.
 
 ``` r
-range(ames$`Sale Price`, na.rm = TRUE)
+saleprice <- range(ames$`Sale Price`, na.rm = TRUE)
+saleprice
 ```
 
     ## [1]        0 20500000
@@ -98,7 +105,13 @@ ggplot(ames, aes(x = log(get("Sale Price")))) +
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-Devon’s Work:
+Most of the sale prices are around the 11-13 range. There are no
+outliers, and not many homes have a sale price above or below the 11-13
+range.
+
+## Step 4 Result:
+
+### Devon’s Work:
 
 ``` r
 range(ames$YearBuilt, na.rm = TRUE)
@@ -150,3 +163,72 @@ Price. The sale prices of homes seems to be relatively constant across
 years that homes were built.However, this graph shows that some of the
 lowest sale prices were houses built around the time of the 2008 housing
 crisis.
+
+### Izzy’s Work:
+
+Izzy’s Variable: Style Range:
+
+``` r
+unique(ames$Style)
+```
+
+    ##  [1] 1 1/2 Story Frame 1 Story Frame     <NA>              2 Story Frame    
+    ##  [5] Split Foyer Frame Split Level Frame 1 Story Brick     2 1/2 Story Frame
+    ##  [9] 2 Story Brick     None              1 1/2 Story Brick 1 3/4 Story Frame
+    ## [13] 2 1/2 Story Brick
+    ## 12 Levels: 1 1/2 Story Brick 1 1/2 Story Frame ... Split Level Frame
+
+``` r
+#since it is categorical, these are the unique values for "Style"
+```
+
+Since the style is categorical, the range is a list of the types of
+styles of houses in Ames.
+
+``` r
+library(ggplot2)
+ggplot(ames, aes(Style, log(get("Sale Price")))) +
+  scale_x_discrete(guide = guide_axis(n.dodge=3)) +
+  geom_boxplot()
+```
+
+    ## Warning: Removed 2206 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- --> I found that
+comparing the sale price to the style of the home shows us that the
+prices are very similar on average since the means are pretty lined up
+in the plot. I noticed the 1 story frame had a few outliers falling on
+the lower side of sale price, but it also had some outliers falling on
+the higher side. Even though they are all very close, the highest sale
+price mean is the 2 story brick style. The lowest mean is “none,” which
+might mean these houses are unique or even smaller than any style on the
+list because smaller homes tend to have a lower sale price.
+
+### Luca’s Work:
+
+``` r
+range(ames$Bedrooms, na.rm = TRUE)
+```
+
+    ## [1]  0 10
+
+``` r
+library(ggplot2)
+ggplot(ames, aes(x = Bedrooms, y = log(get("Sale Price")))) +
+  geom_point(color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Bedrooms vs Sale Price",
+       x = "Number of Bedrooms",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Luca: I chose the variable Bedrooms. Bedrooms and Sale Price do not show
+correlation. The majority of the homes have 2-5 bed rooms and there are
+some outliers. There is one outlier of 10 bedrooms, but the price is in
+the normal range.
