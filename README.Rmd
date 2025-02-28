@@ -49,8 +49,8 @@ The ames data set contains the following variables followed by what we expect th
 
 ```{r}
 
-range(ames$`Sale Price`, na.rm = TRUE)
-
+saleprice <- range(ames$`Sale Price`, na.rm = TRUE)
+saleprice
 ```
 
 
@@ -88,3 +88,45 @@ ggplot(year, aes(y = log(get("Sale Price")), x = YearBuilt)) +
 ```
 
 There does not appear to be a relationship between YearBuilt and Sale Price. The sale prices of homes seems to be relatively constant across years that homes were built.However, this graph shows that some of the lowest sale prices were houses built around the time of the 2008 housing crisis.
+
+Most of the sale prices are around the 11-13 range. There are no outliers, and not many homes have a sale price above or below the 11-13 range.
+
+
+
+
+STEP 4 IZZY'S WORK:
+
+Izzy's Variable: Style
+Range:
+```{r}
+
+unique(ames$Style)
+#since it is categorical, these are the unique values for "Style"
+
+```
+Since the style is categorical, the range is a list of the types of styles of houses in Ames.
+
+```{r}
+library(ggplot2)
+ggplot(ames, aes(Style, log(get("Sale Price")))) +
+  scale_x_discrete(guide = guide_axis(n.dodge=3)) +
+  geom_boxplot()
+
+```
+I found that comparing the sale price to the style of the home shows us that the prices are very similar on average since the means are pretty lined up in the plot. I noticed the 1 story frame had a few outliers falling on the lower side of sale price, but it also had some outliers falling on the higher side. Even though they are all very close, the highest sale price mean is the 2 story brick style. The lowest mean is "none," which might mean these houses are unique or even smaller than any style on the list because smaller homes tend to have a lower sale price.
+
+
+```{r}
+range(ames$Bedrooms, na.rm = TRUE)
+
+library(ggplot2)
+ggplot(ames, aes(x = Bedrooms, y = log(get("Sale Price")))) +
+  geom_point(color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of Bedrooms vs Sale Price",
+       x = "Number of Bedrooms",
+       y = "Sale Price")
+
+```
+
+Luca: I chose the variable Bedrooms. Bedrooms and Sale Price do not show correlation. The majority of the homes have 2-5 bed rooms and there are some outliers. There is one outlier of 10 bedrooms, but the price is in the normal range.
